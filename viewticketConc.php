@@ -1,13 +1,11 @@
 <h1>view</h1>
 
 <?php
-$sql = "SELECT * FROM usuarios";
+$sql = "SELECT * FROM ticketexec";
 
 $res = $conn->query($sql);
 
 $qtd = $res->num_rows;
-
-$hoje = date('Y/m/d');
 
 if ($qtd > 0) {
 
@@ -19,6 +17,7 @@ if ($qtd > 0) {
                 <th scope="col">Departamento</th>
                 <th scope="col">Ramal do Usuario</th>
                 <th scope="col">Descrição do chamado</th>
+                <th scope="col">Data da execução</th>
                 <th scope="col">Ações</th>
              
             </tr>
@@ -34,18 +33,11 @@ if ($qtd > 0) {
             <td> $row->dpUser </td>
             <td> $row->ramal </td>
             <td> $row->descTicket </td>
-            <td> $hoje</td>
-            <td class='d-flex justify-content-between align-self-center' style='height:15vh; '>
-            <button style='height:7vh; margin-top:2vh' onclick=\"location.href='?page=editar&id=".$row->id."'\"  class='btn text-center btn-warning'>EDITAR</button> 
-
-             <button style='height:7vh; margin-top:2vh' onclick=\"if (confirm('Você concluiu realmente essa tarefa?')) {
-                location.href='?page=salvar&acao=ticketConc&id=".$row->id."&data=".$hoje."'
-            }
-            else{false;}
-            \"  class='btn text-center btn-success'>FEITO</button> 
+            <td> $row->dataExec</td>
+            <td class='d-flex justify-content-between align-self-center' style='height:15vh;'> 
 
             <button style='height:7vh; margin-top:2vh' onclick=\"if (confirm('Tem certeza que deseja excluir')) {
-                location.href='?page=salvar&acao=deletTicket&id=".$row->id."'
+                location.href='?page=salvar&acao=deletTicketConc&id=".$row->id."'
             }
             else{false;}
             \" class='btn text-center btn-danger'>DELETAR</button> </td>

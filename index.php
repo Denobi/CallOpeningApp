@@ -8,7 +8,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
-<body>
+<body class="bg-dark text-light" >
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.php">
@@ -28,6 +28,9 @@
           <li class="nav-item">
             <a class="nav-link" href="?page=visuTicket">Gerenciar Chamados</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="?page=viewticketConc">Chamados Executados</a>
+          </li>
         </ul>
         <span class="navbar-text p-2">
           SISTEMA DE GERENCIAMENTO DE CHAMADOS
@@ -36,7 +39,7 @@
     </div>
   </nav>
 
-  <div class="container">
+  <div class="container m-5">
   <?php
     include('config.php');
 
@@ -52,6 +55,12 @@
         break;
       case  "inicio":
         include('index.php');
+        break;
+      case  "editar":
+        include('editTicket.php');
+        break;
+      case  "viewticketConc":
+        include('viewticketConc.php');
         break;
       default:
         print("<h1>INICIO</h1>");
