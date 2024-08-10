@@ -1,6 +1,7 @@
-<h1>create</h1>
+
 <form action="?page=salvar" method="POST">
   <input type="hidden" name="acao" value="cad">
+  <input type="hidden" name="nivel" value="$_SESSION['nivelAcesso']">
 <div class="mb-3">
   <label for="nomeUser" class="form-label">Seu Nome</label>
   <input type="text" class="form-control" id="nomeUser" name="nomeUser" placeholder="João da Silva ">

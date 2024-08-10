@@ -1,4 +1,6 @@
 <?php
+session_start();
+    include('config.php');
     switch ($_REQUEST["acao"]) {
         case 'cad':
             $nomeUser = $_POST["nomeUser"];
@@ -40,6 +42,7 @@
             
             if($res==true){
                 print"<script>alert('Editado com sucesso');</script>";
+                print"<script>alert('Cadastrado com sucesso');</script>";
                 print"<script>location.href='?page=visuTicket';</script>";
             }else{
                 
@@ -116,6 +119,38 @@
                             print"<script>location.href='?page=visuTicket';</script>";
                         }
                         break;
+                        #NOVOS USUARIOS
+                        case 'cadNewUser':
+                            $nomeUser = $_POST["nomeUser"];
+                            $username = $_POST["username"];
+                            $mailUser = $_POST["mailUser"];
+                            $passUser = sha1($_POST["passUser"]);
+                            $passUser2 = sha1($_POST["passUser2"]);
+                            print"alert(".$passUser === $passUser2.")";
+                            if($passUser === $passUser2){
+                                $sql = "INSERT INTO accountusers (nomeUser,username,mailUser,passUser) 
+                                VALUES ('{$nomeUser}','{$username}','{$mailUser}','{$passUser}')";
+                    
+                                $res = $conn->query($sql);
+                    
+                                if($res==true){
+                                    print"<script>alert('Novo Usuario Cadastrado com sucesso');</script>";
+                                    print"<script>location.href='index.php';</script>";
+                                }else{
+                                    
+                                    print"<script> console.log(err)</script>";
+                                    print"<script>alert('Não foi possivel cadastrar');</script>";
+                                    print"<script>location.href='cadUsersNew.php';</script>";
+                                }
+                            }else{
+                                   
+                                print"<script> console.log(err)</script>";
+                                print"<script>alert('As senhas não coincidem, por favor tente novamente');</script>";
+                                print"<script>location.href='cadUsersNew.php';</script>";
+                            }
+                
+                           
+                            break;
                 default:
                 # code...
                 break;
